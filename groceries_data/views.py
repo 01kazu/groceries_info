@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from groceries_data.forms import GroceriesInfoForm
 from groceries_data.models import GroceriesInfo
+
+
 
 def home(request):
     context = {}
@@ -11,6 +14,7 @@ def home(request):
     return render(request, 'groceries_data\home.html', context)
 
 
+@login_required
 def info(request):
     context = {}
     if request.method == "POST":
@@ -29,6 +33,7 @@ def info(request):
     return render(request, "groceries_data/info.html", context)
 
 
+@login_required
 def update_info(request, id):
     context ={}
     obj = get_object_or_404(GroceriesInfo, id = id)
@@ -42,6 +47,7 @@ def update_info(request, id):
     return render(request, "groceries_data/update_info.html", context)
 
 
+@login_required
 def delete_info(request, id):
     obj = get_object_or_404(GroceriesInfo, id = id)
     if request.method == "POST":

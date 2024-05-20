@@ -1,0 +1,27 @@
+{% extends "groceries_data/base.html"%}
+
+{% load static %}
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{% block title %}Data Entry{% endblock %}
+{% block head %} 
+<script src="jquery-3.7.1.min.js"></script>
+{% endblock %}
+
+
+
+{% block nav_entry %} active {% endblock %}
+
+{% block main %}
+{{ form.media }} 
+<form method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+
+  {% bootstrap_button button_type="submit" content="OK" %}
+  {% url 'home' as the_link %}
+  {% bootstrap_button content="Cancel"  href=the_link %}
+  </form>
+{% endblock %}
+ 

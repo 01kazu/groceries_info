@@ -1,0 +1,20 @@
+{% extends "groceries_data/base.html"%}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Delete Info ?{% endblock %}
+
+{% block nav_entry %} active {% endblock %}
+
+{% block main %}
+<h4>{{obj}} </h4>
+<h2>Are You Sure you want to Delete This Info? </h2>
+<form method="post">
+  {% csrf_token %}
+
+  {% bootstrap_button button_type="submit" button_class="btn-danger" content="DELETE" %}
+  {% url 'home' as the_link %}
+  {% bootstrap_button content="Cancel"  href=the_link %}
+  </form>
+{% endblock %}
+ 

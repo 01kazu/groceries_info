@@ -1,0 +1,54 @@
+{% extends "groceries_data/base.html"%}
+
+{% load static %}
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{% block title %}Products{% endblock %}
+
+{% block nav_home %} active {% endblock %}
+
+{% block main %}
+    {% if user.is_authenticated %}
+    <div class="alert alert-success" role="alert">
+     Welcome, {{user.username}}
+    </div>
+    {% endif %}
+    <h1>Data on products</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Product Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Size</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Money Spent</th>
+          <th scope="col">Purchase Date</th>
+          <th scope="col">Store Name</th>
+          <th scope="col">Location</th>
+          <th scope="col">Update </th>
+          <th scope="col">Delete </th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for grocery in groceries %}
+        <tr>
+          <td>{{grocery.product_name}}</td>
+          <td>{{grocery.quantity}}</th>
+          <td>{{grocery.size}}</th>
+          <td>{{grocery.unit}}</td>
+          <td>{{grocery.money_spent}}</td>
+          <td>{{grocery.purchase_date}}</td>
+          <td>{{grocery.store_name}}</td>
+          <td>{{grocery.location}}</td>
+          <td><a href="{% url 'update_info' grocery.id %}" class="btn btn-primary" role="button">Update</a>
+          <td><a href="{% url 'delete_info' grocery.id %}" class="btn btn-danger" role="button">Delete</a>
+
+        </tr>
+    {% endfor%}
+      </tbody>
+    </table>
+
+  
+{% endblock %}
+ 

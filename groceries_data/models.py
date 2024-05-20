@@ -23,6 +23,7 @@ class GroceriesInfo(models.Model):
     purchase_date = models.DateField()
     store_name = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
+    # user = 
 
     def __str__(self):
         return f'{self.quantity: .1f} {self.product_name}s bought on {self.purchase_date: %d %B, %Y}'

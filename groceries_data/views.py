@@ -5,12 +5,11 @@ from groceries_data.forms import GroceriesInfoForm
 from groceries_data.models import GroceriesInfo
 
 
-
 def home(request):
     context = {}
     groceries = GroceriesInfo.objects.all()
     context['groceries'] = groceries
-    print(request.user)
+    print(type(request.user.id))
     return render(request, 'groceries_data\home.html', context)
 
 

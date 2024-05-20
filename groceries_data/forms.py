@@ -5,7 +5,7 @@ from bootstrap_datepicker_plus.widgets import DatePickerInput
 class GroceriesInfoForm(ModelForm):
     class Meta:
         model = GroceriesInfo
-        fields = '__all__'
+        exclude = ["uploader"]
         widgets = {
             "product_name": TextInput(attrs={"placeholder": "Name of the Product/Produce/Goods"}),
             "quantity": NumberInput(attrs={"placeholder": "How many of the Product/Produce/Goods did you purchase?"}),

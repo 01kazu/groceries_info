@@ -179,6 +179,8 @@
           {% else %}
           <a class="nav-link fw-bold py-1 px-0 {% block nav_login %} {% endblock %}" href="{% url 'login' %}">Log in</a>
           {% endif%}
+          <a class="nav-link fw-bold py-1 px-0 {% block nav_time %} {% endblock %}">It is {% now "jS F Y H:i" %}
+          </a>
       </nav>
     </div>
   </header>

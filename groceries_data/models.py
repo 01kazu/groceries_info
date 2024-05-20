@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+
 
 # Create your models here.
 class GroceriesInfo(models.Model):
@@ -23,7 +25,11 @@ class GroceriesInfo(models.Model):
     purchase_date = models.DateField()
     store_name = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
-    # user = 
+    uploader = models.ForeignKey(
+      settings.AUTH_USER_MODEL,  
+      on_delete = models.SET_NULL,
+      null = True
+    )
 
     def __str__(self):
         return f'{self.quantity: .1f} {self.product_name}s bought on {self.purchase_date: %d %B, %Y}'

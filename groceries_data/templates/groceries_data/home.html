@@ -26,8 +26,10 @@
           <th scope="col">Purchase Date</th>
           <th scope="col">Store Name</th>
           <th scope="col">Location</th>
+        {% if user.is_authenticated %}
           <th scope="col">Update </th>
           <th scope="col">Delete </th>
+        {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -41,9 +43,10 @@
           <td>{{grocery.purchase_date}}</td>
           <td>{{grocery.store_name}}</td>
           <td>{{grocery.location}}</td>
-          <td><a href="{% url 'update_info' grocery.id %}" class="btn btn-primary" role="button">Update</a>
-          <td><a href="{% url 'delete_info' grocery.id %}" class="btn btn-danger" role="button">Delete</a>
-
+          {% if user.id == grocery.uploader.id %}
+            <td><a href="{% url 'update_info' grocery.id %}" class="btn btn-primary" role="button">Update</a>
+            <td><a href="{% url 'delete_info' grocery.id %}" class="btn btn-danger" role="button">Delete</a>
+          {% endif %}
         </tr>
     {% endfor%}
       </tbody>

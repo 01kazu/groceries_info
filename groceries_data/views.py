@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from groceries_data.forms import GroceriesInfoForm
 from groceries_data.models import GroceriesInfo
 
+
+User = get_user_model()
 
 def home(request):
     context = {}
@@ -16,12 +19,14 @@ def home(request):
 @login_required
 def info(request):
     context = {}
+    obj = get_object_or_404(User, id = request.user.id)
     if request.method == "POST":
-        # create a form instance and populate it with data from the request:
         form = GroceriesInfoForm(request.POST)
-        # check whether it's valid:
         if form.is_valid():
+            form = form.save(commit=False)
+            form.uploader = obj
             form.save()
+            print(form.uploader.id)
             messages.success(request, "Data has been created.")
             return redirect('home')
 

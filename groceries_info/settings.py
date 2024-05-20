@@ -32,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'groceries_data.apps.GroceriesDataConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'groceries_data.apps.GroceriesDataConfig',
+    'accounts.apps.AccountsConfig',
     'django_bootstrap5',
     "bootstrap_datepicker_plus",
 ]

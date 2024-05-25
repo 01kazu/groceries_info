@@ -9,11 +9,6 @@
 {% block nav_home %} active {% endblock %}
 
 {% block main %}
-    {% if user.is_authenticated %}
-    <div class="alert alert-success" role="alert">
-     Welcome, {{user.username}}
-    </div>
-    {% endif %}
     <h1>Data on products</h1>
     <table class="table table-hover">
       <thead>

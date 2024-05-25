@@ -12,7 +12,6 @@ def home(request):
     context = {}
     groceries = GroceriesInfo.objects.all()
     context['groceries'] = groceries
-    print(type(request.user.id))
     return render(request, 'groceries_data/home.html', context)
 
 
@@ -26,7 +25,6 @@ def info(request):
             form = form.save(commit=False)
             form.uploader = obj
             form.save()
-            print(form.uploader.id)
             messages.success(request, "Data has been created.")
             return redirect('home')
 

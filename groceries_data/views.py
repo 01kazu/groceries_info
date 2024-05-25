@@ -13,7 +13,7 @@ def home(request):
     groceries = GroceriesInfo.objects.all()
     context['groceries'] = groceries
     print(type(request.user.id))
-    return render(request, 'groceries_data\home.html', context)
+    return render(request, 'groceries_data/home.html', context)
 
 
 @login_required

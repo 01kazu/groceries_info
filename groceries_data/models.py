@@ -32,5 +32,5 @@ class GroceriesInfo(models.Model):
     )
 
     def __str__(self):
-        return f'{self.quantity: .1f} {self.product_name}s bought on {self.purchase_date: %d %B, %Y}'
+        return f'{self.product_name}s bought with {self.money_spent}'
 

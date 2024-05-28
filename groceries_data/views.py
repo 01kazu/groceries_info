@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from groceries_data.forms import GroceriesInfoForm
 from groceries_data.models import GroceriesInfo
 
@@ -11,7 +12,16 @@ User = get_user_model()
 def home(request):
     context = {}
     groceries = GroceriesInfo.objects.all()
-    context['groceries'] = groceries
+    p = Paginator(groceries, 10)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = p.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = p.page(1)
+    except EmptyPage:
+        page_obj = p.page()
+    context = {'groceries': groceries,
+               'page_obj': page_obj}
     return render(request, 'groceries_data/home.html', context)
 
 
